@@ -1,0 +1,236 @@
+﻿@model SellToMi.Controllers.DisplayAdViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Html.DisplayFor(m=>m.Title)</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    Html.RenderPartial("_SubCategories", new { id = Model.CategoryId });
+    
+
+          
+<div id="form_container" style="position:relative; width:60%; top:0px;"  >
+   
+<table style="background-color:ButtonHighlight;width:400px" >
+    <tr><td colspan="20">
+               <table style="width:70%"  ><tr><td style="align:left" >@Html.Label("Prev&nbsp;&nbsp;&nbsp;", "LinkButton1")  </td>
+                   <td >@Html.Label("&nbsp;&nbsp;&nbsp;Next", "LinkButton2")  
+                       @Html.Label("", "lblError")
+
+                   </td></tr>
+
+               </table>
+
+
+    
+              <table style="width:90%; "><tr><td>@Html.Label(Model.Title,"Title")</td></tr>    
+                <tr><td>Category:@Html.Label(Model.CategoryName,"Category")></td><td><asp:ImageButton ImageUrl="images/redflag.gif" ID="flagit" style="width:20px" AlternateText="Flag this ad"  runat="server" OnClick="FlagIt" /><br/></td></tr>
+
+              </table>
+    
+              <button name="imgMain" id="imgMain"  class="ImageBox" style="width: 70px;">
+         <img src=""/></button>
+              
+                       <div class="addthis_toolbox addthis_default_style" style="position:relative; border-top-width:0px;left:320px;width:240px; flex-align: end" >
+ 
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_email"></a>
+                        <a class="addthis_button_favorites"></a>
+                        <a class="addthis_button_print"></a>
+                        <span class="addthis_separator">|</span>
+                        <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=webtransit" class="addthis_button_expanded">More</a>
+                        </div>
+    
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=webtransit"></script>
+        <!-- AddThis Button END -->
+      
+               @Html.Label("Craigslist Ad", "craigslist")
+            <br /> 
+
+    
+             <asp:Label ID="AdIdOrig" Visible="false" Text="" runat="server"></asp:Label>
+</td></tr>
+    
+<tr><td style="valign:top;width:600px" >
+    
+    <!-- only show paypal button if a price is in there and the email address is not a craigslist email 
+        NOTE used to have Price: at beginning -->
+    @if (Model.Price == "Price:")
+    {
+    }
+    else
+    {
+        if ((Model.Email + "" != "") && (Model.Email.IndexOf("raigslist") == -1))
+        {
+        <span style="color:red">PLEASE contact the seller before paying for an item, to ensure that your item is available and to check out the details!  NOTE that if the seller does not
+        have a Paypal account associated with their email address this Paypal button will not work!</span><br/>
+        <iframe  style="height:100px;background-color: ButtonHighlight;border:medium double rgb(250,0,255)"  src="PayPalForm.aspx?PayeeEmail=@Html.DisplayFor(m=>m.Email)&amp;Title=@Html.DisplayFor(m=>m.Title)&amp;AdId=@Html.DisplayFor(m=>m.AdId)&amp;Price=@Html.DisplayFor(m=>m.Price)&amp;Shipping=@Html.DisplayFor(m=>m.Shipping)&amp;ReturnURL=@Request.Url.AbsoluteUri&amp;CancelURL=@Request.Url.AbsoluteUri" >
+        </iframe>						
+        }
+    }
+</td></tr>
+<tr><td style="vertical-align:top; width:350px" >
+   
+<a target="_new" href="ShowImage.aspx?img=@Html.DisplayFor(m=>m.FileLocation)">
+    
+         <img id="imgAd" style="border:none" src="Model.FileLocation"/></a>
+    
+    
+   
+
+
+  
+    </td></tr>
+    <tr><td style="vertical-align:top; width:350px;background-color:ButtonHighlight">
+
+    
+   @if (1 == 1)
+   { 
+    
+<span onmouseover="javascript:document.getElementById('<%=imgAd.ClientID%>').src=image0.src;"><asp:image  CssClass="imageBox" id="altimg1" runat="server"  Width="70"   AlternateText="Image 2" onError="javascript:this.src='images/txttoad_image.gif'"  /> </span>
+    
+<span onmouseover="javascript:document.getElementById('<%=imgAd.ClientID%>').src=image1.src;"><asp:image  CssClass="imageBox" id="altimg2" runat="server" Width="70"  AlternateText="Image 3" onError="javascript:this.src='images/txttoad_image.gif'" /> </span>
+<span onmouseover="javascript:document.getElementById('<%=imgAd.ClientID%>').src=image2.src;"><asp:image   CssClass="imageBox" id="altimg3" runat="server"  Width="70"  AlternateText="Image 4" onError="javascript:this.src='images/txttoad_image.gif'" /></span>
+
+<br/><asp:Button ID="Morebtn" Text="More Images" Visible="false" runat="server" OnClick="MoreImages"/>
+        <br /><br /><br />
+<script type="text/javascript">
+
+
+
+    if (document.images) {
+        strImageSrc = document.getElementById('<%=altimg1.ClientID%>').src;
+        strImageSrc2 = document.getElementById('<%=altimg2.ClientID%>').src;
+        strImageSrc3 = document.getElementById('<%=altimg3.ClientID%>').src;
+
+        image0 = new Image;
+        image1 = new Image;
+        image2 = new Image;
+
+
+        image0.src = strImageSrc.toString().replace("\/thumb", "");
+
+
+
+        image1.src = strImageSrc2.toString().replace("\/thumb", "");
+
+
+
+        image2.src = strImageSrc3.toString().replace("\/thumb", "");
+
+        //default to showing the 0 image large
+
+
+
+        //if 2 and 3 dont contain images, dont show them
+        if (document.getElementById('<%=altimg2.ClientID%>').src.indexOf('txttoad_image') != -1) {
+            document.getElementById('<%=altimg2.ClientID%>').style.display = 'none';
+        }
+        if (document.getElementById('<%=altimg3.ClientID%>').src.indexOf('txttoad_image') != -1) {
+            document.getElementById('<%=altimg3.ClientID%>').style.display = 'none';
+        }
+
+        document.getElementById('<%=altimg1.ClientID%>').src = strImageSrc;
+
+        document.getElementById('<%=imgAd.ClientID%>').src = strImageSrc;
+
+    } else {
+        image0 = 'images/txttoad_image.gif';
+        image1 = 'images/txttoad_image.gif';
+        image2 = 'images/txttoad_image.gif';
+        document.getElementById('<%=imgAd.ClientID%>') = '';
+    }
+    document.getElementById('<%=imgAd.ClientID%>').src = image1.src;
+    document.getElementById('<%=imgAd.ClientID%>').title = "<%=Server.HtmlDecode(hiddenTitle.Text)%>";
+    document.getElementById('<%=altimg2.ClientID%>').title = "<%=subcats%>";
+</script>
+
+ 
+   }
+   else
+   {
+   }
+  
+
+        <div id="divPhoneNumber" style="width:200px" runat="server">Phone number goes here</div>
+        <br />
+        </td></tr>
+    <tr><td>
+@Html.Label("", "txtAdDateUpdated")                    
+
+@if (Session["username"] != null)
+{
+    <p class="ProductLinks"><a href="Ask.aspx?AdId=@Html.DisplayFor(m=>m.AdId)&FromEmail=@Html.Display(Session["username"].ToString())&ToEmail=@Html.DisplayFor(m=>m.Email)">Send seller a question »</a><br /><a href="WatchItem.aspx?ItemId=@Html.DisplayFor(m=>m.AdId)">Add to watch list »</a><br/></p>
+    if (Model.Email == "Email:" + Session["username"].ToString())
+    { 						
+        <p class="ProductLinks"><a href="AddTxtAd.aspx?Id=@Html.DisplayFor(m=>m.AdId)">Edit Ad »</a> </p>
+    }
+}
+else
+{
+    if ((Model.Email + "").IndexOf("raigslist") > -1)
+    {
+          <p class="ProductLinks"><a href="mailto:@Html.DisplayFor(m=>m.Email.Replace("Email:", ""))&Subject=A TxtToAd.com user has a question about your ad&Body=The ad is available to view at: <a href='http://www.txttoad.com/DisplayItem.aspx?ItemId=<%=AdId%>'>http://www.txttoad.com/DisplayItem.aspx?ItemId=@Html.DisplayFor(m=>m.AdId)</a>" target="new" >Send seller an email (craigslist) ></a><br /><br/></p>
+    }
+    if (Model.Email + "" != "")
+    { 
+        <p class="ProductLinks"><a href="Ask.aspx?AdId=@Html.DisplayFor(m=>m.AdId)&FromEmail=ads@txttoad.com&ToEmail=@Html.DisplayFor(m=>m.Email.Replace("Email:", ""))">Send seller a question »</a></p>
+    }
+    else
+    { 
+       <asp:Label ID="Label1" Text="Email: You must be logged in to access this Email address " Font-Bold="true" Visible="true" runat="server"></asp:Label>       
+       <p class="ProductLinks">To ask seller a question or to add this item to your watch list, please login at the top of this page.<br/></p>
+    }
+}<!-- hiding email address unless logged in? Yes, just on web version - on mobile, we know their mobile number so no need? -->
+
+   
+<p><b>@Html.Label("", Model.AdId)</b></p>
+
+              
+@Html.Label(Model.City + " " + Model.State + " " + Model.ZipCode)                                    
+@Html.Label(Model.Price)                                    
+@Html.Label(Model.CategoryName)                                    
+@Html.Label(Model.Tax)                                    
+@Html.Label(Model.Qty)
+@Html.Label(Model.Shipping)                                                                                
+@Html.Label(Model.RefundPolicy)                                    
+@Html.Label(Model.PaymentTerms)                                    
+@Html.Label(Model.Email)
+@Html.Label(Model.Description)                                                                                
+    
+ 
+
+<br />
+
+  
+    
+<!-- only show paypal button if a price is in there and the email address is not a craigslist email -->
+@if (Model.Price == "Price:")
+{
+}
+else
+{
+    if ((Model.Email + "" != "") && (Model.Email.IndexOf("raigslist") == -1))
+    {
+<span style="color:red">PLEASE contact the seller before paying for an item, to ensure that your item is available and to check out the details!  NOTE that if the seller does not
+    have a Paypal account associated with the email address <%=txtPayeeEmail.Text%> this link will not work!</span><br/>
+<iframe class="MainContent"  style="background-color: #e0efff;border:medium double rgb(250,0,255)" src="PayPalForm.aspx?PayeeEmail=@Model.Email&amp;Title=@Model.Title&amp;AdId=@Model.AdId&amp;Price=@Model.Price&amp;Shipping=@Model.Shipping&amp;ReturnURL=@Request.Url.AbsoluteUri&amp;CancelURL=@Request.Url.AbsoluteUri" >
+</iframe>						
+    }
+}
+    
+  
+</td></tr></table>
+
+}
+    @Html.ActionLink("Back to List", "Index")
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+}

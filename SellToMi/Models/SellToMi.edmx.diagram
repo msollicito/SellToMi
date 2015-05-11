@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="29d439a3c0da42609290bc4abf84168c" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="SellToMiModel.TxtAd" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellToMiModel.TxtAdCategory" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellToMiModel.TxtAdInfo" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellToMiModel.TxtAdPhoto" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellToMiModel.vwFullAdItem" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SellToMiModel.fk_TxtAdCategoryAd" ManuallyRouted="false" />
+        <AssociationConnector Association="SellToMiModel.fk_TxtAdInfoId" ManuallyRouted="false" />
+        <AssociationConnector Association="SellToMiModel.fk_TxtAdPhotoId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

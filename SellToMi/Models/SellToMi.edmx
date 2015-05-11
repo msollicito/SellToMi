@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SellToMiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SellToMiModelStoreContainer">
+          <EntitySet Name="TxtAd" EntityType="SellToMiModel.Store.TxtAd" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TxtAdCategory" EntityType="SellToMiModel.Store.TxtAdCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TxtAdInfo" EntityType="SellToMiModel.Store.TxtAdInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TxtAdPhoto" EntityType="SellToMiModel.Store.TxtAdPhoto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vwFullAdItem" EntityType="SellToMiModel.Store.vwFullAdItem" store:Type="Views" store:Schema="dbo" store:Name="vwFullAdItem">
+            <DefiningQuery>SELECT 
+      [vwFullAdItem].[Email] AS [Email], 
+      [vwFullAdItem].[AdId] AS [AdId], 
+      [vwFullAdItem].[Title] AS [Title], 
+      [vwFullAdItem].[Description] AS [Description], 
+      [vwFullAdItem].[FileLocation] AS [FileLocation], 
+      [vwFullAdItem].[DateCreated] AS [DateCreated], 
+      [vwFullAdItem].[DateUpdated] AS [DateUpdated], 
+      [vwFullAdItem].[Tags] AS [Tags], 
+      [vwFullAdItem].[Approved] AS [Approved], 
+      [vwFullAdItem].[UpdateDate] AS [UpdateDate], 
+      [vwFullAdItem].[CategoryId] AS [CategoryId], 
+      [vwFullAdItem].[CategoryName] AS [CategoryName], 
+      [vwFullAdItem].[Expr1] AS [Expr1], 
+      [vwFullAdItem].[Expr2] AS [Expr2], 
+      [vwFullAdItem].[Price] AS [Price], 
+      [vwFullAdItem].[Qty] AS [Qty], 
+      [vwFullAdItem].[Tax] AS [Tax], 
+      [vwFullAdItem].[Shipping] AS [Shipping], 
+      [vwFullAdItem].[PaymentTerms] AS [PaymentTerms], 
+      [vwFullAdItem].[City] AS [City], 
+      [vwFullAdItem].[State] AS [State], 
+      [vwFullAdItem].[ZipCode] AS [ZipCode], 
+      [vwFullAdItem].[RefundPolicy] AS [RefundPolicy], 
+      [vwFullAdItem].[Expr3] AS [Expr3], 
+      [vwFullAdItem].[Expr4] AS [Expr4], 
+      [vwFullAdItem].[Expr5] AS [Expr5], 
+      [vwFullAdItem].[Expr6] AS [Expr6], 
+      [vwFullAdItem].[Expr7] AS [Expr7], 
+      [vwFullAdItem].[Expr8] AS [Expr8], 
+      [vwFullAdItem].[Expr9] AS [Expr9]
+      FROM [dbo].[vwFullAdItem] AS [vwFullAdItem]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_TxtAdCategoryAd" Association="SellToMiModel.Store.fk_TxtAdCategoryAd">
+            <End Role="TxtAd" EntitySet="TxtAd" />
+            <End Role="TxtAdCategory" EntitySet="TxtAdCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TxtAdInfoId" Association="SellToMiModel.Store.fk_TxtAdInfoId">
+            <End Role="TxtAd" EntitySet="TxtAd" />
+            <End Role="TxtAdInfo" EntitySet="TxtAdInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TxtAdPhotoId" Association="SellToMiModel.Store.fk_TxtAdPhotoId">
+            <End Role="TxtAd" EntitySet="TxtAd" />
+            <End Role="TxtAdPhoto" EntitySet="TxtAdPhoto" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TxtAd">
+          <Key>
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="AdId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="FileLocation" Type="varchar" MaxLength="350" />
+          <Property Name="DateCreated" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateUpdated" Type="nvarchar" MaxLength="150" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="150" />
+          <Property Name="Approved" Type="nchar" MaxLength="2" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TxtAdCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="AdId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TxtAdInfo">
+          <Key>
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Name="AdId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qty" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Shipping" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentTerms" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefundPolicy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCreated" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateUpdated" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TxtAdPhoto">
+          <Key>
+            <PropertyRef Name="AdId" />
+            <PropertyRef Name="FileLocation" />
+          </Key>
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdId" Type="int" Nullable="false" />
+          <Property Name="FileLocation" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DateCreated" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateUpdated" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'DB_77381_txttoad.dbo.vwFullAdItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vwFullAdItem">
+          <Key>
+            <PropertyRef Name="AdId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="Expr6" />
+            <PropertyRef Name="Expr7" />
+          </Key>
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="AdId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="FileLocation" Type="varchar" MaxLength="350" />
+          <Property Name="DateCreated" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateUpdated" Type="nvarchar" MaxLength="150" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="150" />
+          <Property Name="Approved" Type="nchar" MaxLength="2" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Expr1" Type="int" Nullable="false" />
+          <Property Name="Expr2" Type="int" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qty" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Shipping" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentTerms" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefundPolicy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr5" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr6" Type="int" Nullable="false" />
+          <Property Name="Expr7" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Expr8" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expr9" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="fk_TxtAdCategoryAd">
+          <End Role="TxtAd" Type="SellToMiModel.Store.TxtAd" Multiplicity="1" />
+          <End Role="TxtAdCategory" Type="SellToMiModel.Store.TxtAdCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TxtAd">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="TxtAdCategory">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TxtAdInfoId">
+          <End Role="TxtAd" Type="SellToMiModel.Store.TxtAd" Multiplicity="1" />
+          <End Role="TxtAdInfo" Type="SellToMiModel.Store.TxtAdInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TxtAd">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="TxtAdInfo">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TxtAdPhotoId">
+          <End Role="TxtAd" Type="SellToMiModel.Store.TxtAd" Multiplicity="1" />
+          <End Role="TxtAdPhoto" Type="SellToMiModel.Store.TxtAdPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TxtAd">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="TxtAdPhoto">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetFullAd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getListofItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cat" Type="int" Mode="In" />
+          <Parameter Name="startnumber" Type="int" Mode="In" />
+          <Parameter Name="lastnumber" Type="int" Mode="In" />
+          <Parameter Name="SearchText" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="ZipCodes" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetSubCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryId" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SellToMiModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DB_77381_txttoadEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TxtAd" EntityType="SellToMiModel.TxtAd" />
+          <EntitySet Name="TxtAdCategory" EntityType="SellToMiModel.TxtAdCategory" />
+          <EntitySet Name="TxtAdInfo" EntityType="SellToMiModel.TxtAdInfo" />
+          <EntitySet Name="TxtAdPhoto" EntityType="SellToMiModel.TxtAdPhoto" />
+          <EntitySet Name="vwFullAdItem" EntityType="SellToMiModel.vwFullAdItem" />
+          <AssociationSet Name="fk_TxtAdCategoryAd" Association="SellToMiModel.fk_TxtAdCategoryAd">
+            <End Role="TxtAd" EntitySet="TxtAd" />
+            <End Role="TxtAdCategory" EntitySet="TxtAdCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TxtAdInfoId" Association="SellToMiModel.fk_TxtAdInfoId">
+            <End Role="TxtAd" EntitySet="TxtAd" />
+            <End Role="TxtAdInfo" EntitySet="TxtAdInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TxtAdPhotoId" Association="SellToMiModel.fk_TxtAdPhotoId">
+            <End Role="TxtAd" EntitySet="TxtAd" />
+            <End Role="TxtAdPhoto" EntitySet="TxtAdPhoto" />
+          </AssociationSet>
+          <FunctionImport Name="getListofItems" ReturnType="Collection(SellToMiModel.getListofItems_Result)">
+            <Parameter Name="cat" Mode="In" Type="Int32" />
+            <Parameter Name="startnumber" Mode="In" Type="Int32" />
+            <Parameter Name="lastnumber" Mode="In" Type="Int32" />
+            <Parameter Name="SearchText" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="ZipCodes" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetSubCategories" ReturnType="Collection(SellToMiModel.GetSubCategories_Result)">
+          <Parameter Name="CategoryId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetFullAd" ReturnType="Collection(SellToMiModel.GetFullAd_Result)">
+          <Parameter Name="AdId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="TxtAd">
+          <Key>
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="AdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FileLocation" Type="String" MaxLength="350" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DateUpdated" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Tags" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Approved" Type="String" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TxtAdCategory" Relationship="SellToMiModel.fk_TxtAdCategoryAd" FromRole="TxtAd" ToRole="TxtAdCategory" />
+          <NavigationProperty Name="TxtAdInfo" Relationship="SellToMiModel.fk_TxtAdInfoId" FromRole="TxtAd" ToRole="TxtAdInfo" />
+          <NavigationProperty Name="TxtAdPhoto" Relationship="SellToMiModel.fk_TxtAdPhotoId" FromRole="TxtAd" ToRole="TxtAdPhoto" />
+        </EntityType>
+        <EntityType Name="TxtAdCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="AdId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TxtAd" Relationship="SellToMiModel.fk_TxtAdCategoryAd" FromRole="TxtAdCategory" ToRole="TxtAd" />
+        </EntityType>
+        <EntityType Name="TxtAdInfo">
+          <Key>
+            <PropertyRef Name="AdId" />
+          </Key>
+          <Property Name="AdId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Qty" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Tax" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Shipping" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PaymentTerms" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RefundPolicy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateUpdated" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TxtAd" Relationship="SellToMiModel.fk_TxtAdInfoId" FromRole="TxtAdInfo" ToRole="TxtAd" />
+        </EntityType>
+        <EntityType Name="TxtAdPhoto">
+          <Key>
+            <PropertyRef Name="AdId" />
+            <PropertyRef Name="FileLocation" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AdId" Type="Int32" Nullable="false" />
+          <Property Name="FileLocation" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateUpdated" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TxtAd" Relationship="SellToMiModel.fk_TxtAdPhotoId" FromRole="TxtAdPhoto" ToRole="TxtAd" />
+        </EntityType>
+        <EntityType Name="vwFullAdItem">
+          <Key>
+            <PropertyRef Name="AdId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="Expr6" />
+            <PropertyRef Name="Expr7" />
+            <PropertyRef Name="CategoryName" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="AdId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FileLocation" Type="String" MaxLength="350" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DateUpdated" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Tags" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Approved" Type="String" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="Int32" Nullable="false" />
+          <Property Name="Expr2" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Qty" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Tax" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Shipping" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PaymentTerms" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RefundPolicy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Expr3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Expr4" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Expr5" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Expr6" Type="Int32" Nullable="false" />
+          <Property Name="Expr7" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Expr8" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Expr9" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="fk_TxtAdCategoryAd">
+          <End Role="TxtAd" Type="SellToMiModel.TxtAd" Multiplicity="1" />
+          <End Role="TxtAdCategory" Type="SellToMiModel.TxtAdCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TxtAd">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="TxtAdCategory">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TxtAdInfoId">
+          <End Role="TxtAd" Type="SellToMiModel.TxtAd" Multiplicity="1" />
+          <End Role="TxtAdInfo" Type="SellToMiModel.TxtAdInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TxtAd">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="TxtAdInfo">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TxtAdPhotoId">
+          <End Role="TxtAd" Type="SellToMiModel.TxtAd" Multiplicity="1" />
+          <End Role="TxtAdPhoto" Type="SellToMiModel.TxtAdPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TxtAd">
+              <PropertyRef Name="AdId" />
+            </Principal>
+            <Dependent Role="TxtAdPhoto">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getListofItems_Result">
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DateUpdated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="AdId" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Tags" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="FileLocation" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="DateCreated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tax" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shipping" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RefundPolicy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentTerms" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Location" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="RN" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetSubCategories_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="GetFullAd_Result">
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="AdId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="FileLocation" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="DateCreated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DateUpdated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Tags" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="2" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Expr1" Nullable="false" />
+          <Property Type="Int32" Name="Expr2" Nullable="false" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tax" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shipping" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentTerms" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RefundPolicy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr4" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr5" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Expr6" Nullable="false" />
+          <Property Type="String" Name="Expr7" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Expr8" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr9" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetFullAd1_Result">
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="AdId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="FileLocation" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="DateCreated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DateUpdated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Tags" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="2" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Expr1" Nullable="false" />
+          <Property Type="Int32" Name="Expr2" Nullable="false" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tax" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shipping" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentTerms" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RefundPolicy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr4" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr5" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Expr6" Nullable="false" />
+          <Property Type="String" Name="Expr7" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Expr8" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr9" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetFullAd2_Result">
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="AdId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="FileLocation" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="DateCreated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DateUpdated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Tags" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="2" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Expr1" Nullable="false" />
+          <Property Type="Int32" Name="Expr2" Nullable="false" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tax" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shipping" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentTerms" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RefundPolicy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr4" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr5" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Expr6" Nullable="false" />
+          <Property Type="String" Name="Expr7" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Expr8" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr9" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetFullAd3_Result">
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="AdId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="FileLocation" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="DateCreated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DateUpdated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Tags" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="2" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Expr1" Nullable="false" />
+          <Property Type="Int32" Name="Expr2" Nullable="false" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tax" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shipping" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentTerms" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RefundPolicy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr4" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr5" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Expr6" Nullable="false" />
+          <Property Type="String" Name="Expr7" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Expr8" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr9" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetFullAd4_Result">
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="AdId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="FileLocation" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="DateCreated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DateUpdated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Tags" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="2" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Expr1" Nullable="false" />
+          <Property Type="Int32" Name="Expr2" Nullable="false" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tax" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shipping" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentTerms" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RefundPolicy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr4" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr5" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Expr6" Nullable="false" />
+          <Property Type="String" Name="Expr7" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Expr8" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr9" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetFullAd5_Result">
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="AdId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="FileLocation" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="DateCreated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DateUpdated" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Tags" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="2" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Expr1" Nullable="false" />
+          <Property Type="Int32" Name="Expr2" Nullable="false" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tax" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shipping" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentTerms" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RefundPolicy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr4" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr5" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Expr6" Nullable="false" />
+          <Property Type="String" Name="Expr7" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Expr8" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Expr9" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SellToMiModelStoreContainer" CdmEntityContainer="DB_77381_txttoadEntities">
+          <EntitySetMapping Name="TxtAd">
+            <EntityTypeMapping TypeName="SellToMiModel.TxtAd">
+              <MappingFragment StoreEntitySet="TxtAd">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TxtAdCategory">
+            <EntityTypeMapping TypeName="SellToMiModel.TxtAdCategory">
+              <MappingFragment StoreEntitySet="TxtAdCategory">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TxtAdInfo">
+            <EntityTypeMapping TypeName="SellToMiModel.TxtAdInfo">
+              <MappingFragment StoreEntitySet="TxtAdInfo">
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="RefundPolicy" ColumnName="RefundPolicy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TxtAdPhoto">
+            <EntityTypeMapping TypeName="SellToMiModel.TxtAdPhoto">
+              <MappingFragment StoreEntitySet="TxtAdPhoto">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+                <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwFullAdItem">
+            <EntityTypeMapping TypeName="SellToMiModel.vwFullAdItem">
+              <MappingFragment StoreEntitySet="vwFullAdItem">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="RefundPolicy" ColumnName="RefundPolicy" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+                <ScalarProperty Name="Expr5" ColumnName="Expr5" />
+                <ScalarProperty Name="Expr6" ColumnName="Expr6" />
+                <ScalarProperty Name="Expr7" ColumnName="Expr7" />
+                <ScalarProperty Name="Expr8" ColumnName="Expr8" />
+                <ScalarProperty Name="Expr9" ColumnName="Expr9" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getListofItems" FunctionName="SellToMiModel.Store.getListofItems">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellToMiModel.getListofItems_Result">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="RefundPolicy" ColumnName="RefundPolicy" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="RN" ColumnName="RN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSubCategories" FunctionName="SellToMiModel.Store.GetSubCategories">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellToMiModel.GetSubCategories_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetFullAd" FunctionName="SellToMiModel.Store.GetFullAd">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellToMiModel.GetFullAd_Result">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="RefundPolicy" ColumnName="RefundPolicy" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+                <ScalarProperty Name="Expr5" ColumnName="Expr5" />
+                <ScalarProperty Name="Expr6" ColumnName="Expr6" />
+                <ScalarProperty Name="Expr7" ColumnName="Expr7" />
+                <ScalarProperty Name="Expr8" ColumnName="Expr8" />
+                <ScalarProperty Name="Expr9" ColumnName="Expr9" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

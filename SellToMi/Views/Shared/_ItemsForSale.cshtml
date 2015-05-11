@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MvcApplication1.Models.TxtAd>
+
+<table class="grid">
+   <tr>
+      <th>Product Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      
+   </tr>
+        
+@foreach (var item in Model.ToList<MvcApplication1.Models.TxtAd>()) 
+{
+       <tr>
+      <td class="left">@item.AdId</td>
+      <td class="left">@item.Title</td>
+      <td class="left">@item.Description</td>
+      
+     
+   </tr>
+   
+}
+</table>            

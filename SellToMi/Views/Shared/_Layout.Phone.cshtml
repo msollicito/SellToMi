@@ -1,0 +1,90 @@
+﻿a<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title -SellToMi</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"  />
+         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <!-- iphone low res -->
+        <link rel="apple-touch-icon" sizes="57x57" href="~/Content/images/SellToMi-touch-icon_75x75.png" />
+        <!-- iphone hi res -->
+        <link rel="apple-touch-icon" sizes="114x114" href="~/Content/images/SellToMi-touch-icon_128x128.png" />
+        <!--android-->
+        <link rel="apple-touch-icon" sizes="android-only" href="~/Content/images/SellToMi-touch-icon_75x75.png" />
+        <!--default-->
+        <link rel="apple-touch-icon"  href="~/Content/images/SellToMi-touch-icon_75x75.png" />
+        @Styles.Render("~/bundles/MobileCss")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/MobileJS")
+        
+        <link rel="Stylesheet" type="text/css" href="~/Content/SellToMi.css"  />
+       
+        <link rel="Stylesheet" type="text/css" href="~/Content/add2home.css"  />
+
+          @Styles.Render("~/bundles/Content/css")
+        
+
+       
+        @Scripts.Render("~/bundles/Bootstrap")
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        
+    <script type="text/javascript">
+        var  addToHomeConfig = {
+            animationIn: 'bubble',
+            animationOut: 'drop',
+            lifespan: 10000,
+            expire: 2,
+            touchIcon: true,
+            message: 'Install this web app on your %device: tap `%icon` and then <strong>Add to Home Screen</strong>.'
+        };
+</script>
+<script type="application/javascript" src="~/Scripts/add2home.js"></script>
+    </head>
+    <body>
+
+        <div data-role="page" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <h1>@ViewBag.Title</h1>
+                @Html.Partial("_ViewSwitcher")
+                 </div>
+                @Html.Partial("_NavBar")
+            
+               
+                @{
+                    bool ShowBackButton = false;
+                    bool ShowHomeButton = false;
+                    if (ViewBag.ShowBackButton != null && ViewBag.ShowBackButton == true)
+                    {
+                        ShowBackButton=true;
+                    }
+                    if (ViewBag.ShowHomeButton != null && ViewBag.ShowHomeButton == true)
+                    {
+                        ShowHomeButton = true;
+                    }
+                    if (ShowBackButton)
+                    {
+                        <a data-rel="back" data-role="button" data-transition="slide" data-direction="reverse" data-icon="back">Back</a>
+                    }
+                    if (ShowHomeButton)
+                    {
+                           <a href="@Url.Action("Index","Home")" data-role="button" data-transition="slide" data-direction="reverse" data-icon="back">Home</a>
+                    }
+                }
+            
+            <div data-role="content" data-theme="a">
+                
+                @RenderSection("featured", required: false)
+            
+                @RenderBody()
+            </div>
+            <div data-role="footer" data-theme="a" data-position="fixed">
+                @Html.Partial("_NavBar")
+            </div>
+        </div>
+    </body>
+</html>

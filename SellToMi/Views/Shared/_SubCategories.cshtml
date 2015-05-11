@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+    bool bHeaderShown = false;
+    string subcats ="";
+    string linkstring = "";
+}
+
+
+@foreach (var item in Model)
+{
+    if (bHeaderShown == false)
+    {
+        <br/><span>Refine results by clicking here..</span><br />
+        bHeaderShown = true;
+    }
+    subcats = subcats + "," + item.Name;
+    linkstring = linkstring + "<a href='DisplayCategory.aspx?Category=" + item.Id + "&Search=" + item.Name + "'>" + item.Name + "</a>&nbsp; |&nbsp;";
+            
+          
+          
+}
